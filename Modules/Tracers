@@ -1,0 +1,55 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local Camera = game.Workspace.CurrentCamera
+local UserInputService = game:GetService("UserInputService")
+local Tracers = {}
+-
+local function CreateTracer(player)
+    local Tracer = Drawing.new("Line")
+    Tracer.Thickness = 2
+    Tracer.Transparency = 0.5
+    Tracer.Visible = true
+    Tracer.Color = Color3.fromRGB(255, 0, 0) -- Default color
+    
+    table.insert(Tracers, {
+        Player = player,
+        Tracer = Tracer
+    })
+-
+    local function UpdateTracer()
+        if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local HumanoidRootPart = player.Character.HumanoidRootPart
+            local HumanoidRootPartPos, onScreen = Camera:WorldToViewportPoint(HumanoidRootPart.Position)
+            
+            if onScreen then
+                Tracer.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+                Tracer.To = Vector2.new(HumanoidRootPartPos.X, HumanoidRootPartPos.Y)
+                Tracer.Visible = true
+            else
+                Tracer.Visible = false
+            end
+        else
+            Tracer.Visible = false
+        end
+    end
+
+    RunService.RenderStepped:Connect(function()
+        UpdateTracer()
+    end)
+end
+-
+local function StartESP()
+    Players.PlayerAdded:Connect(function(player)
+        if player ~= Players.LocalPlayer then
+            CreateTracer(player)
+        end
+    end)
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= Players.LocalPlayer then
+            CreateTracer(player)
+        end
+    end
+end
+-
+StartESP()
