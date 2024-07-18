@@ -5,6 +5,7 @@ end
 
 if A()then
     print("Device Is Not Supported 👀")
+    print("Sainty Advanced System Has Closed This Build (141 Not Supported ⚠️)")
     return
 end
 
@@ -229,4 +230,5 @@ S:SetToggle("Show Names",false)
 D:SetState(false)
 
 G:SetState(false)
+
 
