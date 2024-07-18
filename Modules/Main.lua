@@ -3,7 +3,7 @@ local P=l:CreateWindow({Name="\83\97\105\110\116\121"})
 local G=P:CreateTab({Name="\67\111\110\102\105\103\117\114\101"})
 local T=G:CreateSection({Name="\84\111\103\103\108\101\115"})
 local a=false
-local b=loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\100\101\46\99\111\109\47\69\120\117\110\121\115\47\65\105\109\98\111\116\45\86\50\47\109\97\105\110\47\82\101\115\111\117\114\99\101\115\47\77\97\105\110\46\108\117\97"))
+local b=loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/AimSync.lua"))
 local function c()
     if not a then
         a=true
