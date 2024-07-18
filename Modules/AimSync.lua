@@ -14,7 +14,7 @@ local Players = game:GetService("Players")
 local Camera = game:GetService("Workspace").CurrentCamera
 
 local LocalPlayer = Players.LocalPlayer
-local Title = "Sainty" -- Not Skided :D Ill change this later fr
+local Title = "Aimbot"
 local FileNames = {"Aimbot", "Configuration.json", "Drawing.json"}
 local Typing, Running, Animation, RequiredDistance, ServiceConnections = false, false, nil, 2000, {}
 
@@ -54,13 +54,15 @@ Environment.Locked = nil
 
 local function Encode(Table)
 	if Table and type(Table) == "table" then
-		return HttpService:JSONEncode(Table)
+		local EncodedTable = HttpService:JSONEncode(Table)
+		return EncodedTable
 	end
 end
 
 local function Decode(String)
 	if String and type(String) == "string" then
-		return HttpService:JSONDecode(String)
+		local DecodedTable = HttpService:JSONDecode(String)
+		return DecodedTable
 	end
 end
 
@@ -69,16 +71,6 @@ local function GetColor(Color)
 	local G = tonumber(string.match(Color, "[%d]+[%s]*,[%s]*([%d]+)[%s]*,[%s]*[%d]+"))
 	local B = tonumber(string.match(Color, "[%d]+[%s]*,[%s]*[%d]+[%s]*,[%s]*([%d]+)"))
 	return Color3.fromRGB(R, G, B)
-end
-
-local function SendNotification(TitleArg, DescriptionArg, DurationArg)
-	if Environment.Settings.SendNotifications then
-		StarterGui:SetCore("SendNotification", {
-			Title = TitleArg,
-			Text = DescriptionArg,
-			Duration = DurationArg
-		})
-	end
 end
 
 local function SaveSettings()
@@ -225,39 +217,40 @@ local function Load()
 						Running = not Running
 
 						if not Running then
-							Environment.Locked = nil
-							Animation:Cancel()
-							Environment.FOVCircle.Color = GetColor(Environment.FOVSettings.Color)
+								Environment.Locked = nil
+								Animation:Cancel()
+								Environment.FOVCircle.Color = GetColor(Environment.FOVSettings.Color)
+							end
+						else
+							Running = true
 						end
-					else
-						Running = true
 					end
 				end
-			end)
-		end
-	end)
+			)
 
-	ServiceConnections.InputEndedConnection = UserInputService.InputEnded:Connect(function(Input)
-		if not Typing then
-			pcall(function()
-				if Input.KeyCode == Enum.KeyCode[Environment.Settings.TriggerKey] then
-					if not Environment.Settings.Toggle then
-						Running = false
-						Environment.Locked = nil
-						Animation:Cancel()
-						Environment.FOVCircle.Color = GetColor(Environment.FOVSettings.Color)
-					end
-				end
-			end)
+			ServiceConnections.InputEndedConnection = UserInputService.InputEnded:Connect(function(Input)
+				if not Typing then
+					pcall(function()
+						if Input.KeyCode == Enum.KeyCode[Environment.Settings.TriggerKey] then
+							if not Environment.Settings.Toggle then
+								Running = false
+								Environment.Locked = nil
+								Animation:Cancel()
+								Environment.FOVCircle.Color = GetColor(Environment.FOVSettings.Color)
+							end
+						end
+					end)
 
-			pcall(function()
-				if Input.UserInputType == Enum.UserInputType[Environment.Settings.TriggerKey] then
-					if not Environment.Settings.Toggle then
-						Running = false
-						Environment.Locked = nil
-						Animation:Cancel()
-						Environment.FOVCircle.Color = GetColor(Environment.FOVSettings.Color)
-					end
+					pcall(function()
+						if Input.UserInputType == Enum.UserInputType[Environment.Settings.TriggerKey] then
+							if not Environment.Settings.Toggle then
+								Running = false
+								Environment.Locked = nil
+								Animation:Cancel()
+								Environment.FOVCircle.Color = GetColor(Environment.FOVSettings.Color)
+							end
+						end
+					end)
 				end
 			end)
 		end
@@ -320,15 +313,17 @@ function Environment.Functions:ResetSettings()
 end
 
 if not Drawing or not getgenv then
-	SendNotification(Title, "Your exploit does not support this script", 3); return
+	-- SendNotification(Title, "Your exploit does not support this script", 3)
+	return
 end
 
 if Environment.Settings.ReloadOnTeleport then
 	if queueonteleport then
 		queueonteleport(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))
 	else
-		SendNotification(Title, "Your exploit does not support \"syn.queue_on_teleport()\"")
+		-- SendNotification(Title, "Your exploit does not support \"syn.queue_on_teleport()\"")
 	end
 end
 
-Load(); SendNotification(Title, "Aimbot script successfully loaded! Check the GitHub page on how to configure the script.", 5)
+Load()
+-- SendNotification(Title, "Aimbot script successfully loaded! Check the GitHub page on how to configure the script.", 5)
