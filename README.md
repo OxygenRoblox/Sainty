@@ -13,7 +13,7 @@
 Please note that Sainty is designed for use on desktop platforms and is not supported on mobile devices. 🕺
 
 ```lua 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/core.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/Main.lua"))()
 ```
 
 ## Video Snippets
