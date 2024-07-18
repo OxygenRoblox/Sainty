@@ -16,10 +16,10 @@ Please note that Sainty is designed for use on desktop platforms and is not supp
 loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/Main.lua"))()
 ```
 
-## Video Snippets
+## ScreenShots 🤙
 
-Here are some video snippets demonstrating Sainty in action:
+Here are some gif snippets demonstrating Sainty in action:
 
-[![Video 1: Aimbot and Tracers](https://i.ibb.co/6mT4VmB/Jpeg.jpg)](https://www.example.com/videos/YOUR_CUSTOM_VIDEO_1.mp4)
+[![Video 1: Aimbot and Tracers](https://i.ibb.co/GxvSCfz/ezgif-6-e2c73084f2.gif)](https://i.ibb.co/GxvSCfz/ezgif-6-e2c73084f2.gif)
 
 
