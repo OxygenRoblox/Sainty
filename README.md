@@ -1,4 +1,4 @@
-# Sainty
+# Sainty [BETA]
 
 ## Description 🎯
 - Sainty is a powerful script designed to add many features to increase hitbox accuracy  🪩
@@ -15,11 +15,6 @@ Please note that Sainty is designed for use on desktop platforms and is not supp
 ```lua 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/core.lua"))()
 ```
-## 
-
-Check out these videos showcasing Sainty in action 🎥👾
-
-
 
 ## Video Snippets
 
