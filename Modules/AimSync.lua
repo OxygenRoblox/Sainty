@@ -313,7 +313,7 @@ function Environment.Functions:ResetSettings()
 end
 
 if not Drawing or not getgenv then
-	-- SendNotification(Title, "Your exploit does not support this script", 3)
+	
 	return
 end
 
@@ -321,9 +321,9 @@ if Environment.Settings.ReloadOnTeleport then
 	if queueonteleport then
 		queueonteleport(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))
 	else
-		-- SendNotification(Title, "Your exploit does not support \"syn.queue_on_teleport()\"")
+		
 	end
 end
 
 Load()
--- SendNotification(Title, "Aimbot script successfully loaded! Check the GitHub page on how to configure the script.", 5)
+
