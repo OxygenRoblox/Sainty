@@ -1,7 +1,7 @@
 
 local library = {
-	Version = "0.36",
-	WorkspaceName = "Sainty",
+	Version = "0.36", -- Dosent Change Anything [PlaceHolder] for Sainty V.1.0.1
+	WorkspaceName = "Sainty", -- Minor Updates To the Library Nothing Major as of now - 8/2/2024
 	flags = {},
 	signals = {},
 	objects = {},
@@ -16,15 +16,15 @@ local library = {
 		easingDirection = Enum.EasingDirection.Out
 	},
 	colors = {
-		main = Color3.fromRGB(140, 139, 139),
-		background = Color3.fromRGB(54, 54, 54),
-		outerBorder = Color3.fromRGB(15, 15, 15),
-		innerBorder = Color3.fromRGB(73, 63, 73),
-		topGradient = Color3.fromRGB(35, 35, 35),
-		bottomGradient = Color3.fromRGB(29, 29, 29),
-		sectionBackground = Color3.fromRGB(35, 34, 34),
-		section = Color3.fromRGB(176, 175, 176),
-		otherElementText = Color3.fromRGB(129, 127, 129),
+		main = Color3.fromRGB(140, 139, 139), -- [White] * PATCH V.1.1*
+		background = Color3.fromRGB(54, 54, 54), -- 'R'
+		outerBorder = Color3.fromRGB(15, 15, 15), -- 'A'
+		innerBorder = Color3.fromRGB(73, 63, 73), -- 'X'
+		topGradient = Color3.fromRGB(35, 35, 35), -- 'M'
+		bottomGradient = Color3.fromRGB(29, 29, 29), -- 'N'
+		sectionBackground = Color3.fromRGB(35, 34, 34), -- 'N'
+		section = Color3.fromRGB(176, 175, 176), -- 'B'
+		otherElementText = Color3.fromRGB(129, 127, 129), -- 'B'
 		elementText = Color3.fromRGB(147, 145, 147),
 		elementBorder = Color3.fromRGB(20, 20, 20),
 		selectedOption = Color3.fromRGB(255, 252, 252),

@@ -15,23 +15,23 @@ local Camera = game:GetService("Workspace").CurrentCamera
 
 local LocalPlayer = Players.LocalPlayer
 local Title = "Aimbot"
-local FileNames = {"Aimbot", "Configuration.json", "Drawing.json"}
+local FileNames = {"Sainty", "AimSync.json", "Loader.json"} -- Changed For Config :D
 local Typing, Running, Animation, RequiredDistance, ServiceConnections = false, false, nil, 2000, {}
 
 local mousemoverel = mousemoverel or (Input and Input.MouseMove)
 local queueonteleport = queue_on_teleport or syn.queue_on_teleport
 
 Environment.Settings = {
-	SendNotifications = true,
+	SendNotifications = false,
 	SaveSettings = true,
 	ReloadOnTeleport = true,
 	Enabled = true,
-	TeamCheck = false,
+	TeamCheck = true,
 	AliveCheck = true,
-	WallCheck = false,
-	Sensitivity = 0,
+	WallCheck = true,
+	Sensitivity = 10, -- Auto Set Will Fix in the Rework :D [Stay Tuned]
 	ThirdPerson = false,
-	ThirdPersonSensitivity = 3,
+	ThirdPersonSensitivity = 10, -- [Auto Set]
 	TriggerKey = "MouseButton2",
 	Toggle = false,
 	LockPart = "Head"
@@ -46,7 +46,7 @@ Environment.FOVSettings = {
 	Transparency = 0.5,
 	Sides = 60,
 	Thickness = 1,
-	Filled = false
+	Filled = false -- Adding Congifig Toggle Soon [Stay Tuned]
 }
 
 Environment.FOVCircle = Drawing.new("Circle")
@@ -290,10 +290,10 @@ function Environment.Functions:ResetSettings()
 		Enabled = true,
 		TeamCheck = false,
 		AliveCheck = true,
-		WallCheck = false,
+		WallCheck = true,
 		Sensitivity = 0,
-		ThirdPerson = false,
-		ThirdPersonSensitivity = 3,
+		ThirdPerson = true,
+		ThirdPersonSensitivity = 10,
 		TriggerKey = "MouseButton2",
 		Toggle = false,
 		LockPart = "Head"
@@ -319,7 +319,7 @@ end
 
 if Environment.Settings.ReloadOnTeleport then
 	if queueonteleport then
-		queueonteleport(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))
+		queueonteleport(game:HttpGet("https://pastebin.com/raw/QusEDQ7s"))
 	else
 		
 	end

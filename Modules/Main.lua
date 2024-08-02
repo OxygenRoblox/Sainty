@@ -1,3 +1,15 @@
+
+local url = ""
+local success, result = pcall(function()
+    return loadstring(game:HttpGet(url))()
+end)
+
+if not success then
+    warn("Failed to load script from URL: " .. result)
+else
+    -- ("Script loaded and executed successfully. Proceed Loading The GUI for sainty :D") -- Very Sloppy Work on This Code Rework wont be as bad xd.
+end
+wait(1)
 local l=loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/Library.lua"))()
 local P=l:CreateWindow({Name="\83\97\105\110\116\121"})
 local G=P:CreateTab({Name="\67\111\110\102\105\103\117\114\101"})
