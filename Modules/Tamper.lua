@@ -75,7 +75,7 @@ else
         tween:Play()
 
         local sound = Instance.new("Sound")
-        sound.SoundId = "rbxassetid://9119846329"
+        sound.SoundId = "rbxassetid://9126072436"
         sound.Parent = SoundService
         sound:Play()
 

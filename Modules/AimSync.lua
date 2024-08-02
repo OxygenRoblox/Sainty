@@ -308,7 +308,7 @@ function Environment.Functions:ResetSettings()
 		Transparency = 0.5,
 		Sides = 60,
 		Thickness = 1,
-		Filled = false
+		Filled = false -- %%)%)%)%)
 	}
 end
 

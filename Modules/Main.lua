@@ -1,5 +1,5 @@
 
-local url = ""
+local url = "https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/Tamper.lua"
 local success, result = pcall(function()
     return loadstring(game:HttpGet(url))()
 end)
