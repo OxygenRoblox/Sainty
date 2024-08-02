@@ -3,6 +3,9 @@
 ## Description 🎯
 - Sainty is a powerful script designed to add many features to increase hitbox accuracy  🪩
 
+-  Works better in First-Person 🕺
+-  Updates happen every other week 🛡
+
 ## Features
 - **Aimbot:** Automatically locks onto targets to enhance accuracy.
 - **Tracers:** Visual indicators that are hooked onto your mouse movement
