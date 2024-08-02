@@ -1,5 +1,5 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/Tamper.lua"))() -- Tamper V.1.0.1 [For Now Changes May Come To Tamper V.1.0.1 :D]
-wait(4)
+wait(2)
 local l=loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/Library.lua"))()
 local P=l:CreateWindow({Name="\83\97\105\110\116\121"})
 local G=P:CreateTab({Name="\67\111\110\102\105\103\117\114\101"})
