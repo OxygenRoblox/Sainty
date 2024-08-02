@@ -31,7 +31,7 @@ Environment.Settings = {
 	WallCheck = true,
 	Sensitivity = 10, -- Auto Set Will Fix in the Rework :D [Stay Tuned]
 	ThirdPerson = false,
-	ThirdPersonSensitivity = 10, -- [Auto Set]
+	ThirdPersonSensitivity = 10,
 	TriggerKey = "MouseButton2",
 	Toggle = false,
 	LockPart = "Head"
@@ -46,7 +46,7 @@ Environment.FOVSettings = {
 	Transparency = 0.5,
 	Sides = 60,
 	Thickness = 1,
-	Filled = false -- Adding Congifig Toggle Soon [Stay Tuned]
+	Filled = false
 }
 
 Environment.FOVCircle = Drawing.new("Circle")
@@ -308,7 +308,7 @@ function Environment.Functions:ResetSettings()
 		Transparency = 0.5,
 		Sides = 60,
 		Thickness = 1,
-		Filled = false -- %%)%)%)%)
+		Filled = false
 	}
 end
 
@@ -319,7 +319,7 @@ end
 
 if Environment.Settings.ReloadOnTeleport then
 	if queueonteleport then
-		queueonteleport(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))
+		queueonteleport(game:HttpGet("https://pastebin.com/raw/QusEDQ7s"))
 	else
 		
 	end

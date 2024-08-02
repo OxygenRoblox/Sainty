@@ -5,7 +5,7 @@ local P=l:CreateWindow({Name="\83\97\105\110\116\121"})
 local G=P:CreateTab({Name="\67\111\110\102\105\103\117\114\101"})
 local T=G:CreateSection({Name="\84\111\103\103\108\101\115"})
 local a=false
-local b=loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/AimSync.lua"))
+local b=loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))
 local function c()
     if not a then
         a=true
