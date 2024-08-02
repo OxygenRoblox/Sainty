@@ -1,308 +1,327 @@
+--// Obfuscation Helper Functions
+
+local function encodeString(str)
+    local tbl = {str:byte(1, -1)}
+    return table.concat(tbl, ",")
+end
+
+local function decodeString(encoded)
+    local tbl = {}
+    for num in encoded:gmatch("%d+") do
+        tbl[#tbl + 1] = string.char(tonumber(num))
+    end
+    return table.concat(tbl)
+end
+
+local function obfuscateColor(color)
+    return string.format("%d,%d,%d", color.R, color.G, color.B)
+end
+
 --// Preventing Multiple Processes
 
 pcall(function()
-	getgenv().SaintyAimbot.Functions:Exit()
+    getgenv().A:Q()
 end)
 
 --// Environment
 
-getgenv().SaintyAimbot = {}
-local Env = getgenv().SaintyAimbot
+getgenv().A = {}
+local e = getgenv().A
 
 --// Services
 
-local RS = game:GetService("RunService")
-local UIS = game:GetService("UserInputService")
-local HS = game:GetService("HttpService")
-local TS = game:GetService("TweenService")
-local SG = game:GetService("StarterGui")
-local PS = game:GetService("Players")
-local WC = game:GetService("Workspace").CurrentCamera
+local r = game:GetService("RunService")
+local u = game:GetService("UserInputService")
+local h = game:GetService("HttpService")
+local t = game:GetService("TweenService")
+local s = game:GetService("StarterGui")
+local p = game:GetService("Players")
+local c = game:GetService("Workspace").CurrentCamera
 
 --// Variables
 
-local LP = PS.LocalPlayer
-local Title = "Sainty Developer"
-local FileNames = {"Aimbot", "Config.json", "Draw.json"}
-local Typing, Running, Anim, Dist, Conn = false, false, nil, 2000, {}
+local l = p.LocalPlayer
+local t = "Sainty Dev"
+local f = {"A", "C.json", "D.json"}
+local y, o, n, d, k = false, false, nil, 2000, {}
 
 --// Support Functions
 
-local function Enc(tbl)
-	if tbl and type(tbl) == "table" then
-		return HS:JSONEncode(tbl)
-	end
+local function e(tbl)
+    if tbl and type(tbl) == "table" then
+        return h:JSONEncode(tbl)
+    end
 end
 
-local function Dec(str)
-	if str and type(str) == "string" then
-		return HS:JSONDecode(str)
-	end
+local function d(str)
+    if str and type(str) == "string" then
+        return h:JSONDecode(str)
+    end
 end
 
-local function GetCol(col)
-	local R = tonumber(string.match(col, "([%d]+)[%s]*,[%s]*[%d]+[%s]*,[%s]*[%d]+"))
-	local G = tonumber(string.match(col, "[%d]+[%s]*,[%s]*([%d]+)[%s]*,[%s]*[%d]+"))
-	local B = tonumber(string.match(col, "[%d]+[%s]*,[%s]*[%d]+[%s]*,[%s]*([%d]+)"))
-	return Color3.fromRGB(R, G, B)
+local function g(color)
+    local r = tonumber(string.match(color, "([%d]+)[%s]*,[%s]*[%d]+[%s]*,[%s]*[%d]+"))
+    local g = tonumber(string.match(color, "[%d]+[%s]*,[%s]*([%d]+)[%s]*,[%s]*[%d]+"))
+    local b = tonumber(string.match(color, "[%d]+[%s]*,[%s]*[%d]+[%s]*,[%s]*([%d]+)"))
+    return Color3.fromRGB(r, g, b)
 end
 
 --// Functions
 
-local function SaveCfg()
-	if Env.Settings.SaveSettings then
-		if isfile(Title.."/"..FileNames[1].."/"..FileNames[2]) then
-			writefile(Title.."/"..FileNames[1].."/"..FileNames[2], Enc(Env.Settings))
-		end
-		if isfile(Title.."/"..FileNames[1].."/"..FileNames[3]) then
-			writefile(Title.."/"..FileNames[1].."/"..FileNames[3], Enc(Env.FOVSettings))
-		end
-	end
+local function s()
+    if e.Settings.SaveSettings then
+        if isfile(t.."/"..f[1].."/"..f[2]) then
+            writefile(t.."/"..f[1].."/"..f[2], e(e.Settings))
+        end
+        if isfile(t.."/"..f[1].."/"..f[3]) then
+            writefile(t.."/"..f[1].."/"..f[3], e(e.FOVSettings))
+        end
+    end
 end
 
-local function ClosestPlayer()
-	if not Env.Locked then
-		Dist = Env.FOVSettings.Enabled and Env.FOVSettings.Amount or 2000
-		for _, v in next, PS:GetPlayers() do
-			if v ~= LP then
-				if v.Character and v.Character:FindFirstChild(Env.Settings.LockPart) and v.Character:FindFirstChildOfClass("Humanoid") then
-					if Env.Settings.TeamCheck and v.Team == LP.Team then continue end
-					if Env.Settings.AliveCheck and v.Character:FindFirstChildOfClass("Humanoid").Health <= 0 then continue end
-					if Env.Settings.WallCheck and #(WC:GetPartsObscuringTarget({v.Character[Env.Settings.LockPart].Position}, v.Character:GetDescendants())) > 0 then continue end
+local function c()
+    if not e.Locked then
+        d = e.FOVSettings.Enabled and e.FOVSettings.Amount or 2000
+        for _, v in next, p:GetPlayers() do
+            if v ~= l then
+                if v.Character and v.Character:FindFirstChild(e.Settings.LockPart) and v.Character:FindFirstChildOfClass("Humanoid") then
+                    if e.Settings.TeamCheck and v.Team == l.Team then continue end
+                    if e.Settings.AliveCheck and v.Character:FindFirstChildOfClass("Humanoid").Health <= 0 then continue end
+                    if e.Settings.WallCheck and #(c:GetPartsObscuringTarget({v.Character[e.Settings.LockPart].Position}, v.Character:GetDescendants())) > 0 then continue end
 
-					local Vec, OnScreen = WC:WorldToViewportPoint(v.Character[Env.Settings.LockPart].Position)
-					local D = (Vector2.new(UIS:GetMouseLocation().X, UIS:GetMouseLocation().Y) - Vector2.new(Vec.X, Vec.Y)).Magnitude
+                    local v, o = c:WorldToViewportPoint(v.Character[e.Settings.LockPart].Position)
+                    local d = (Vector2.new(u:GetMouseLocation().X, u:GetMouseLocation().Y) - Vector2.new(v.X, v.Y)).Magnitude
 
-					if D < Dist and OnScreen then
-						Dist = D
-						Env.Locked = v
-					end
-				end
-			end
-		end
-	elseif (Vector2.new(UIS:GetMouseLocation().X, UIS:GetMouseLocation().Y) - Vector2.new(WC:WorldToViewportPoint(Env.Locked.Character[Env.Settings.LockPart].Position).X, WC:WorldToViewportPoint(Env.Locked.Character[Env.Settings.LockPart].Position).Y)).Magnitude > Dist then
-		Env.Locked = nil
-		Anim:Cancel()
-		Env.FOVCircle.Color = GetCol(Env.FOVSettings.Color)
-	end
+                    if d < d and o then
+                        d = d
+                        e.Locked = v
+                    end
+                end
+            end
+        end
+    elseif (Vector2.new(u:GetMouseLocation().X, u:GetMouseLocation().Y) - Vector2.new(c:WorldToViewportPoint(e.Locked.Character[e.Settings.LockPart].Position).X, c:WorldToViewportPoint(e.Locked.Character[e.Settings.LockPart].Position).Y)).Magnitude > d then
+        e.Locked = nil
+        n:Cancel()
+        e.FOVCircle.Color = g(e.FOVSettings.Color)
+    end
 end
 
 --// Typing Check
 
-Conn.TypingStart = UIS.TextBoxFocused:Connect(function()
-	Typing = true
+k.T = u.TextBoxFocused:Connect(function()
+    y = true
 end)
 
-Conn.TypingEnd = UIS.TextBoxFocusReleased:Connect(function()
-	Typing = false
+k.E = u.TextBoxFocusReleased:Connect(function()
+    y = false
 end)
 
 --// Create, Save & Load Settings
 
-if Env.Settings.SaveSettings then
-	if not isfolder(Title) then
-		makefolder(Title)
-	end
+if e.Settings.SaveSettings then
+    if not isfolder(t) then
+        makefolder(t)
+    end
 
-	if not isfolder(Title.."/"..FileNames[1]) then
-		makefolder(Title.."/"..FileNames[1])
-	end
+    if not isfolder(t.."/"..f[1]) then
+        makefolder(t.."/"..f[1])
+    end
 
-	if not isfile(Title.."/"..FileNames[1].."/"..FileNames[2]) then
-		writefile(Title.."/"..FileNames[1].."/"..FileNames[2], Enc(Env.Settings))
-	else
-		Env.Settings = Dec(readfile(Title.."/"..FileNames[1].."/"..FileNames[2]))
-	end
+    if not isfile(t.."/"..f[1].."/"..f[2]) then
+        writefile(t.."/"..f[1].."/"..f[2], e(e.Settings))
+    else
+        e.Settings = d(readfile(t.."/"..f[1].."/"..f[2]))
+    end
 
-	if not isfile(Title.."/"..FileNames[1].."/"..FileNames[3]) then
-		writefile(Title.."/"..FileNames[1].."/"..FileNames[3], Enc(Env.FOVSettings))
-	else
-		Env.Visuals = Dec(readfile(Title.."/"..FileNames[1].."/"..FileNames[3]))
-	end
+    if not isfile(t.."/"..f[1].."/"..f[3]) then
+        writefile(t.."/"..f[1].."/"..f[3], e(e.FOVSettings))
+    else
+        e.Visuals = d(readfile(t.."/"..f[1].."/"..f[3]))
+    end
 
-	coroutine.wrap(function()
-		while wait(10) and Env.Settings.SaveSettings do
-			SaveCfg()
-		end
-	end)()
+    coroutine.wrap(function()
+        while wait(10) and e.Settings.SaveSettings do
+            s()
+        end
+    end)()
 else
-	if isfolder(Title) then
-		delfolder(Title)
-	end
+    if isfolder(t) then
+        delfolder(t)
+    end
 end
 
-local function Load()
-	Conn.RenderStepped = RS.RenderStepped:Connect(function()
-		if Env.FOVSettings.Enabled and Env.Settings.Enabled then
-			Env.FOVCircle.Radius = Env.FOVSettings.Amount
-			Env.FOVCircle.Thickness = Env.FOVSettings.Thickness
-			Env.FOVCircle.Filled = Env.FOVSettings.Filled
-			Env.FOVCircle.NumSides = Env.FOVSettings.Sides
-			Env.FOVCircle.Color = GetCol(Env.FOVSettings.Color)
-			Env.FOVCircle.Transparency = Env.FOVSettings.Transparency
-			Env.FOVCircle.Visible = Env.FOVSettings.Visible
-			Env.FOVCircle.Position = Vector2.new(UIS:GetMouseLocation().X, UIS:GetMouseLocation().Y)
-		else
-			Env.FOVCircle.Visible = false
-		end
+local function l()
+    k.R = r.RenderStepped:Connect(function()
+        if e.FOVSettings.Enabled and e.Settings.Enabled then
+            e.FOVCircle.Radius = e.FOVSettings.Amount
+            e.FOVCircle.Thickness = e.FOVSettings.Thickness
+            e.FOVCircle.Filled = e.FOVSettings.Filled
+            e.FOVCircle.NumSides = e.FOVSettings.Sides
+            e.FOVCircle.Color = g(e.FOVSettings.Color)
+            e.FOVCircle.Transparency = e.FOVSettings.Transparency
+            e.FOVCircle.Visible = e.FOVSettings.Visible
+            e.FOVCircle.Position = Vector2.new(u:GetMouseLocation().X, u:GetMouseLocation().Y)
+        else
+            e.FOVCircle.Visible = false
+        end
 
-		if Running and Env.Settings.Enabled then
-			ClosestPlayer()
+        if o and e.Settings.Enabled then
+            c()
 
-			if Env.Settings.ThirdPerson then
-				Env.Settings.ThirdPersonSensitivity = math.clamp(Env.Settings.ThirdPersonSensitivity, 0.1, 5)
+            if e.Settings.ThirdPerson then
+                e.Settings.ThirdPersonSensitivity = math.clamp(e.Settings.ThirdPersonSensitivity, 0.1, 5)
 
-				local Vec = WC:WorldToViewportPoint(Env.Locked.Character[Env.Settings.LockPart].Position)
-				mousemoverel((Vec.X - UIS:GetMouseLocation().X) * Env.Settings.ThirdPersonSensitivity, (Vec.Y - UIS:GetMouseLocation().Y) * Env.Settings.ThirdPersonSensitivity)
-			else
-				if Env.Settings.Sensitivity > 0 then
-					Anim = TS:Create(WC, TweenInfo.new(Env.Settings.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(WC.CFrame.Position, Env.Locked.Character[Env.Settings.LockPart].Position)})
-					Anim:Play()
-				else
-					WC.CFrame = CFrame.new(WC.CFrame.Position, Env.Locked.Character[Env.Settings.LockPart].Position)
-				end
-			end
+                local v = c:WorldToViewportPoint(e.Locked.Character[e.Settings.LockPart].Position)
+                mousemoverel((v.X - u:GetMouseLocation().X) * e.Settings.ThirdPersonSensitivity, (v.Y - u:GetMouseLocation().Y) * e.Settings.ThirdPersonSensitivity)
+            else
+                if e.Settings.Sensitivity > 0 then
+                    n = t:Create(c, TweenInfo.new(e.Settings.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(c.CFrame.Position, e.Locked.Character[e.Settings.LockPart].Position)})
+                    n:Play()
+                else
+                    c.CFrame = CFrame.new(c.CFrame.Position, e.Locked.Character[e.Settings.LockPart].Position)
+                end
+            end
 
-			Env.FOVCircle.Color = GetCol(Env.FOVSettings.LockedColor)
-		end
-	end)
+            e.FOVCircle.Color = g(e.FOVSettings.LockedColor)
+        end
+    end)
 
-	Conn.InputBegin = UIS.InputBegan:Connect(function(input)
-		if not Typing then
-			pcall(function()
-				if input.KeyCode == Enum.KeyCode[Env.Settings.TriggerKey] then
-					if Env.Settings.Toggle then
-						Running = not Running
+    k.I = u.InputBegan:Connect(function(input)
+        if not y then
+            pcall(function()
+                if input.KeyCode == Enum.KeyCode[e.Settings.TriggerKey] then
+                    if e.Settings.Toggle then
+                        o = not o
 
-						if not Running then
-							Env.Locked = nil
-							Anim:Cancel()
-							Env.FOVCircle.Color = GetCol(Env.FOVSettings.Color)
-						end
-					else
-						Running = true
-					end
-				end
-			end)
+                        if not o then
+                            e.Locked = nil
+                            n:Cancel()
+                            e.FOVCircle.Color = g(e.FOVSettings.Color)
+                        end
+                    else
+                        o = true
+                    end
+                end
+            end)
 
-			pcall(function()
-				if input.UserInputType == Enum.UserInputType[Env.Settings.TriggerKey] then
-					if Env.Settings.Toggle then
-						Running = not Running
+            pcall(function()
+                if input.UserInputType == Enum.UserInputType[e.Settings.TriggerKey] then
+                    if e.Settings.Toggle then
+                        o = not o
 
-						if not Running then
-							Env.Locked = nil
-							Anim:Cancel()
-							Env.FOVCircle.Color = GetCol(Env.FOVSettings.Color)
-						end
-					else
-						Running = true
-					end
-				end
-			end)
-		end
-	end)
+                        if not o then
+                            e.Locked = nil
+                            n:Cancel()
+                            e.FOVCircle.Color = g(e.FOVSettings.Color)
+                        end
+                    else
+                        o = true
+                    end
+                end
+            end)
+        end
+    end)
 
-	Conn.InputEnd = UIS.InputEnded:Connect(function(input)
-		if not Typing then
-			pcall(function()
-				if input.KeyCode == Enum.KeyCode[Env.Settings.TriggerKey] then
-					if not Env.Settings.Toggle then
-						Running = false
-						Env.Locked = nil
-						Anim:Cancel()
-						Env.FOVCircle.Color = GetCol(Env.FOVSettings.Color)
-					end
-				end
-			end)
+    k.O = u.InputEnded:Connect(function(input)
+        if not y then
+            pcall(function()
+                if input.KeyCode == Enum.KeyCode[e.Settings.TriggerKey] then
+                    if not e.Settings.Toggle then
+                        o = false
+                        e.Locked = nil
+                        n:Cancel()
+                        e.FOVCircle.Color = g(e.FOVSettings.Color)
+                    end
+                end
+            end)
 
-			pcall(function()
-				if input.UserInputType == Enum.UserInputType[Env.Settings.TriggerKey] then
-					if not Env.Settings.Toggle then
-						Running = false
-						Env.Locked = nil
-						Anim:Cancel()
-						Env.FOVCircle.Color = GetCol(Env.FOVSettings.Color)
-					end
-				end
-			end)
-		end
-	end)
+            pcall(function()
+                if input.UserInputType == Enum.UserInputType[e.Settings.TriggerKey] then
+                    if not e.Settings.Toggle then
+                        o = false
+                        e.Locked = nil
+                        n:Cancel()
+                        e.FOVCircle.Color = g(e.FOVSettings.Color)
+                    end
+                end
+            end)
+        end
+    end)
 end
 
 --// Functions
 
-Env.Functions = {}
+e.Functions = {}
 
-function Env.Functions:Exit()
-	SaveCfg()
+function e.Functions:Q()
+    s()
 
-	for _, v in next, Conn do
-		v:Disconnect()
-	end
+    for _, v in next, k do
+        v:Disconnect()
+    end
 
-	if Env.FOVCircle.Remove then Env.FOVCircle:Remove() end
+    if e.FOVCircle.Remove then e.FOVCircle:Remove() end
 
-	getgenv().SaintyAimbot.Functions = nil
-	getgenv().SaintyAimbot = nil
+    getgenv().A.Functions = nil
+    getgenv().A = nil
 end
 
-function Env.Functions:Restart()
-	SaveCfg()
+function e.Functions:R()
+    s()
 
-	for _, v in next, Conn do
-		v:Disconnect()
-	end
+    for _, v in next, k do
+        v:Disconnect()
+    end
 
-	Load()
+    l()
 end
 
-function Env.Functions:ResetSettings()
-	Env.Settings = {
-		SendNotifications = false,
-		SaveSettings = true,
-		ReloadOnTeleport = true,
-		Enabled = true,
-		TeamCheck = false,
-		AliveCheck = true,
-		WallCheck = false,
-		Sensitivity = 0,
-		ThirdPerson = false,
-		ThirdPersonSensitivity = 3,
-		TriggerKey = "MouseButton2",
-		Toggle = false,
-		LockPart = "Head"
-	}
+function e.Functions:Reset()
+    e.Settings = {
+        SendNotifications = false,
+        SaveSettings = true,
+        ReloadOnTeleport = true,
+        Enabled = true,
+        TeamCheck = false,
+        AliveCheck = true,
+        WallCheck = false,
+        Sensitivity = 0,
+        ThirdPerson = false,
+        ThirdPersonSensitivity = 3,
+        TriggerKey = "MouseButton2",
+        Toggle = false,
+        LockPart = "Head"
+    }
 
-	Env.FOVSettings = {
-		Enabled = true,
-		Visible = true,
-		Amount = 90,
-		Color = "255, 255, 255",
-		LockedColor = "255, 70, 70",
-		Transparency = 0.5,
-		Sides = 60,
-		Thickness = 1,
-		Filled = false
-	}
+    e.FOVSettings = {
+        Enabled = true,
+        Visible = true,
+        Amount = 90,
+        Color = "255, 255, 255",
+        LockedColor = "255, 70, 70",
+        Transparency = 0.5,
+        Sides = 60,
+        Thickness = 1,
+        Filled = false
+    }
 end
 
 --// Support Check
 
 if not Drawing or not getgenv then
-	return
+    return
 end
 
 --// Reload On Teleport
 
-if Env.Settings.ReloadOnTeleport then
-	if queueonteleport then
-		queueonteleport(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/AimSync.lua"))
-	else
-		return
-	end
+if e.Settings.ReloadOnTeleport then
+    if queueonteleport then
+        queueonteleport(game:HttpGet("https://raw.githubusercontent.com/Sainty/Aimbot-V2/main/Resources/Scripts/Main.lua"))
+    else
+        return
+    end
 end
 
 --// Load
 
-Load()
+l()
