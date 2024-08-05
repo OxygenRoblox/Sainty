@@ -1,4 +1,7 @@
+print("Sainty is up-to-date 🔨📣")
 
+
+print("Sainty 08/4/2024 Thank you all")
 
 local function safePcall(func, ...)
     local success, result = pcall(func, ...)
@@ -10,9 +13,7 @@ end
 
 safePcall(function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Client/Initiate.lua"))()
-    
-  -- Channels have been switched for now all src will be switched to repo next update patch *
-
+wait(1)
 end)
 
 local l = nil
@@ -258,31 +259,3 @@ end)
 
 
 wait(1) -- // To Prevent Crashing theres a sec pause
-
-loadstring(game:HttpGet(""))() 
-
-
--- Unseal and use bitcode below soon 
--- ))()()()())((())()()())
---23 32 3 3 32 23 23  32 32 2
--- ))()()()())((())()()())
--- 23 2 3 232 32 3 23 32 23 
--- ))()()()())((())()()())
--- 23 23 32 32 32  23 23 32 23 
--- ))()()()())((())()()())
--- 32 3 32 23 32 32 32 2 3
--- ))()()()())((())()()())
--- 23 32 2 3 23 32 2 32 23 23
--- ))()()()())((())()()())
---     3223 23 2 2 32 3 2 2 
-
--- ))()()()())((())()()())
-23 23 23 23 3 2 32 23 32 23 
--- ))()()()())((())()()())
-2 32  33 2 2 32 233 232 323 
--- ))()()()())((())()()())
-23 23 23 23 2323 2 32 32 3 
--- ))()()()())((())()()())
--- 2 32 32 3 23 23 23 23 2 32 
--- ))()()()())((())()()())
-
