@@ -1,4 +1,4 @@
-print("Sainty is outdated 🔨📣")
+print("Sainty is Updated 🔨📣")
 print("Sainty 08/4/2024 Thank you all")
 wait(1)
 -- Then Proceed with the rest of loading sainty -- [LOADING UPDATE PATCHED 0/8/4/2024 ⚠️]
