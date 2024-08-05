@@ -1,4 +1,4 @@
-## ⚠️ Our team is working on the final update. Thank you, everyone!
+## ⚠️ We are working on a update!
  Sainty [BETA]
 
 ## Description 🎯
