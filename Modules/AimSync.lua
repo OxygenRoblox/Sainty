@@ -1,9 +1,15 @@
 
+
 pcall(function()
 	getgenv().Aimbot.Functions:Exit()
 end)
+
+
+
 getgenv().Aimbot = {}
 local Environment = getgenv().Aimbot
+
+
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local HttpService = game:GetService("HttpService")
@@ -11,12 +17,20 @@ local TweenService = game:GetService("TweenService")
 local StarterGui = game:GetService("StarterGui")
 local Players = game:GetService("Players")
 local Camera = game:GetService("Workspace").CurrentCamera
+
+
+
 local LocalPlayer = Players.LocalPlayer
-local Title = "Sainty"
-local FileNames = {"Sainty", "AimSync.json", "Sainty.json"}
+local Title = "Exunys Developer"
+local FileNames = {"Aimbot", "Configuration.json", "Drawing.json"}
 local Typing, Running, Animation, RequiredDistance, ServiceConnections = false, false, nil, 2000, {}
+
+
+
 local mousemoverel = mousemoverel or (Input and Input.MouseMove)
 local queueonteleport = queue_on_teleport or syn.queue_on_teleport
+
+
 Environment.Settings = {
 	SendNotifications = true,
 	SaveSettings = true, 
@@ -24,18 +38,19 @@ Environment.Settings = {
 	Enabled = true,
 	TeamCheck = false,
 	AliveCheck = true,
-	WallCheck = true, 
-	Sensitivity = 0.1, 
+	WallCheck = false, 
+	Sensitivity = 0, 
 	ThirdPerson = false, 
-	ThirdPersonSensitivity = 0.5, 
+	ThirdPersonSensitivity = 3, 
 	TriggerKey = "MouseButton2",
 	Toggle = false,
 	LockPart = "Head" 
 }
+
 Environment.FOVSettings = {
 	Enabled = true,
 	Visible = true,
-	Amount = 50, 
+	Amount = 90,
 	Color = "255, 255, 255",
 	LockedColor = "255, 70, 70",
 	Transparency = 0.5,
@@ -43,20 +58,28 @@ Environment.FOVSettings = {
 	Thickness = 1,
 	Filled = false
 }
+
 Environment.FOVCircle = Drawing.new("Circle")
 Environment.Locked = nil
+
+
+
 local function Encode(Table)
 	if Table and type(Table) == "table" then
 		local EncodedTable = HttpService:JSONEncode(Table)
+
 		return EncodedTable
 	end
 end
+
 local function Decode(String)
 	if String and type(String) == "string" then
 		local DecodedTable = HttpService:JSONDecode(String)
+
 		return DecodedTable
 	end
 end
+
 local function GetColor(Color)
 	local R = tonumber(string.match(Color, "([%d]+)[%s]*,[%s]*[%d]+[%s]*,[%s]*[%d]+"))
 	local G = tonumber(string.match(Color, "[%d]+[%s]*,[%s]*([%d]+)[%s]*,[%s]*[%d]+"))
@@ -64,6 +87,7 @@ local function GetColor(Color)
 
 	return Color3.fromRGB(R, G, B)
 end
+
 local function SendNotification(TitleArg, DescriptionArg, DurationArg)
 	if Environment.Settings.SendNotifications then
 		StarterGui:SetCore("SendNotification", {
@@ -73,6 +97,9 @@ local function SendNotification(TitleArg, DescriptionArg, DurationArg)
 		})
 	end
 end
+
+--// Functions
+
 local function SaveSettings()
 	if Environment.Settings.SaveSettings then
 		if isfile(Title.."/"..FileNames[1].."/"..FileNames[2]) then
@@ -84,6 +111,7 @@ local function SaveSettings()
 		end
 	end
 end
+
 local function GetClosestPlayer()
 	if not Environment.Locked then
 		if Environment.FOVSettings.Enabled then
@@ -115,12 +143,19 @@ local function GetClosestPlayer()
 		Environment.FOVCircle.Color = GetColor(Environment.FOVSettings.Color)
 	end
 end
+
+
+
 ServiceConnections.TypingStartedConnection = UserInputService.TextBoxFocused:Connect(function()
 	Typing = true
 end)
+
 ServiceConnections.TypingEndedConnection = UserInputService.TextBoxFocusReleased:Connect(function()
 	Typing = false
 end)
+
+
+
 if Environment.Settings.SaveSettings then
 	if not isfolder(Title) then
 		makefolder(Title)
@@ -139,8 +174,9 @@ if Environment.Settings.SaveSettings then
 	if not isfile(Title.."/"..FileNames[1].."/"..FileNames[3]) then
 		writefile(Title.."/"..FileNames[1].."/"..FileNames[3], Encode(Environment.FOVSettings))
 	else
-		Environment.FOVSettings = Decode(readfile(Title.."/"..FileNames[1].."/"..FileNames[3]))
+		Environment.Visuals = Decode(readfile(Title.."/"..FileNames[1].."/"..FileNames[3]))
 	end
+
 	coroutine.wrap(function()
 		while wait(10) and Environment.Settings.SaveSettings do
 			SaveSettings()
@@ -151,6 +187,7 @@ else
 		delfolder(Title)
 	end
 end
+
 local function Load()
 	ServiceConnections.RenderSteppedConnection = RunService.RenderStepped:Connect(function()
 		if Environment.FOVSettings.Enabled and Environment.Settings.Enabled then
@@ -186,6 +223,7 @@ local function Load()
 			Environment.FOVCircle.Color = GetColor(Environment.FOVSettings.LockedColor)
 		end
 	end)
+
 	ServiceConnections.InputBeganConnection = UserInputService.InputBegan:Connect(function(Input)
 		if not Typing then
 			pcall(function()
@@ -221,6 +259,7 @@ local function Load()
 			end)
 		end
 	end)
+
 	ServiceConnections.InputEndedConnection = UserInputService.InputEnded:Connect(function(Input)
 		if not Typing then
 			pcall(function()
@@ -247,6 +286,8 @@ local function Load()
 		end
 	end)
 end
+
+
 Environment.Functions = {}
 
 function Environment.Functions:Exit()
@@ -280,10 +321,10 @@ function Environment.Functions:ResetSettings()
 		Enabled = true,
 		TeamCheck = false,
 		AliveCheck = true,
-		WallCheck = true, 
-		Sensitivity = 0.1, 
+		WallCheck = false,
+		Sensitivity = 4, 
 		ThirdPerson = false,
-		ThirdPersonSensitivity = 0.5, 
+		ThirdPersonSensitivity = 3,
 		TriggerKey = "MouseButton2",
 		Toggle = false,
 		LockPart = "Head" 
@@ -292,9 +333,9 @@ function Environment.Functions:ResetSettings()
 	Environment.FOVSettings = {
 		Enabled = true,
 		Visible = true,
-		Amount = 50, 
-		Color = "255, 255, 255",
-		LockedColor = "255, 70, 70",
+		Amount = 90,
+		Color = "59, 58, 58",
+		LockedColor = "0, 0, 0",
 		Transparency = 0.5,
 		Sides = 60,
 		Thickness = 1,
@@ -303,14 +344,20 @@ function Environment.Functions:ResetSettings()
 end
 
 
+
 if not Drawing or not getgenv then
-	SendNotification(Title, "Your exploit does not support this script", 3); return
+	SendNotification(Title, "sainty404", 3); return
 end
+
+
+
 if Environment.Settings.ReloadOnTeleport then
 	if queueonteleport then
-		queueonteleport(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))
+		queueonteleport(game:HttpGet(""))
 	else
-		SendNotification(Title, "Your exploit does not support \"syn.queue_on_teleport()\"")
+		SendNotification(Title, "saintysyn.queue_on_teleport()\"https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/AimSync.lua")
 	end
 end
+
+
 Load(); 
