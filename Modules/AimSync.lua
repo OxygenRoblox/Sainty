@@ -1,4 +1,36 @@
 
+-- AimSync @Sainty
+
+-- ////4/////4///////////4////////
+-- ////////////////////4////////
+-- /////5/////////////////////4//
+-- ///////////////4/////////4////
+-- /////5////////////////4///////
+-- ////////////5/////////4///////
+-- ///4/////////////////////////
+-- ///////5////////4/////4////////
+-- ////////////////////4//5//////
+-- ///////4/////////////////////
+-- ////////4////////////////////
+-- ////4////////4//////////////// [*PATCH V.0.01]
+-- //////////////5//////4////////
+-- ///////5/////////////////////
+-- ///////////////////4/////////
+-- ////////////4///5///////////// [AIMSYNC PATCH V.1]
+-- ////4///////////4/////////////
+-- ////////5///////////////5/////
+-- /////////4///////////////////
+-- //////////////5//////////////
+-- //////////////4//////////////
+-- /////5//////////////4/////////
+-- ///////5//////5///////////////[*%PATCH V.1..0..1]
+-- /////////////////////5///////
+-- ////////////////////////////
+-- /////5////////5///////////////
+-- ///////4//////////4///////////
+-- //////5//////////////////////
+-- ////////4////////4////////////[*%PATCHED FOR BROKEN AIMSYNC 2024.]
+
 
 pcall(function()
 	getgenv().Aimbot.Functions:Exit()
@@ -8,6 +40,7 @@ end)
 
 getgenv().Aimbot = {}
 local Environment = getgenv().Aimbot
+
 
 
 local RunService = game:GetService("RunService")
@@ -21,14 +54,15 @@ local Camera = game:GetService("Workspace").CurrentCamera
 
 
 local LocalPlayer = Players.LocalPlayer
-local Title = "Exunys Developer"
-local FileNames = {"Aimbot", "Configuration.json", "Drawing.json"}
+local Title = "Sainty"
+local FileNames = {"Sainty", "Aimsync.json", "Configure.json"}
 local Typing, Running, Animation, RequiredDistance, ServiceConnections = false, false, nil, 2000, {}
 
 
 
 local mousemoverel = mousemoverel or (Input and Input.MouseMove)
 local queueonteleport = queue_on_teleport or syn.queue_on_teleport
+
 
 
 Environment.Settings = {
@@ -98,7 +132,7 @@ local function SendNotification(TitleArg, DescriptionArg, DurationArg)
 	end
 end
 
---// Functions
+
 
 local function SaveSettings()
 	if Environment.Settings.SaveSettings then
@@ -288,6 +322,7 @@ local function Load()
 end
 
 
+
 Environment.Functions = {}
 
 function Environment.Functions:Exit()
@@ -312,30 +347,30 @@ function Environment.Functions:Restart()
 
 	Load()
 end
-
+-- AIMSYNC MOULDES/CONFIGURES
 function Environment.Functions:ResetSettings()
 	Environment.Settings = {
 		SendNotifications = true,
-		SaveSettings = true, 
-		ReloadOnTeleport = true,
+		SaveSettings = false, 
+		ReloadOnTeleport = false,
 		Enabled = true,
 		TeamCheck = false,
 		AliveCheck = true,
 		WallCheck = false,
-		Sensitivity = 4, 
+		Sensitivity = 0, 
 		ThirdPerson = false,
 		ThirdPersonSensitivity = 3,
 		TriggerKey = "MouseButton2",
 		Toggle = false,
 		LockPart = "Head" 
 	}
-
+-- FOV CHANGER :D
 	Environment.FOVSettings = {
 		Enabled = true,
 		Visible = true,
 		Amount = 90,
-		Color = "59, 58, 58",
-		LockedColor = "0, 0, 0",
+		Color = "138, 136, 136",
+		LockedColor = "8, 7, 7",
 		Transparency = 0.5,
 		Sides = 60,
 		Thickness = 1,
@@ -346,18 +381,19 @@ end
 
 
 if not Drawing or not getgenv then
-	SendNotification(Title, "sainty404", 3); return
+	SendNotification() return
 end
 
-
+-- // Functions To Load the Library Next update this will be changed to another function :D
 
 if Environment.Settings.ReloadOnTeleport then
 	if queueonteleport then
-		queueonteleport(game:HttpGet(""))
+		queueonteleport(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/AimSync.lua"))
 	else
-		SendNotification(Title, "saintysyn.queue_on_teleport()\"https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/AimSync.lua")
+		SendNotification(Title, "Your exploit does not support \"syn.queue_on_teleport()\"")
 	end
 end
+
 
 
 Load(); 
