@@ -28,7 +28,7 @@
 -- ////////////////////////////
 -- /////5////////5///////////////
 -- ///////4//////////4///////////
--- //////5//////////////////////
+-- //////5////////////////////// [*Color Changed For Fov v.1..0..1]
 -- ////////4////////4////////////[*%PATCHED FOR BROKEN AIMSYNC 2024.]
 
 
@@ -85,8 +85,8 @@ Environment.FOVSettings = {
 	Enabled = true,
 	Visible = true,
 	Amount = 90,
-	Color = "255, 255, 255",
-	LockedColor = "255, 70, 70",
+	Color = "209, 209, 209", --// 8/4/2024 Color Changed To Mat 209, *
+	LockedColor = "112, 112, 112", -- Also Changed , 112
 	Transparency = 0.5,
 	Sides = 60,
 	Thickness = 1,
