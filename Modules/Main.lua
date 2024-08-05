@@ -1,15 +1,7 @@
 print("Sainty is outdated 🔨📣")
-safePcall(function()
-    wait(0.2)
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Sainty",
-        Text = "8/4/2024 ⌚",
-        Duration = 3
-    })
-end)
-
 print("Sainty 08/4/2024 Thank you all")
-
+wait(1)
+-- Then Proceed with the rest of loading sainty -- [LOADING UPDATE PATCHED 0/8/4/2024 ⚠️]
 local function safePcall(func, ...)
     local success, result = pcall(func, ...)
     if not success then
@@ -29,7 +21,7 @@ end)
 
 local b = nil
 safePcall(function()
-    b = loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))
+    b = loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/AimSync.lua"))
 end)
 
 local P, G, T = nil, nil, nil
