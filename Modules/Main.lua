@@ -1,14 +1,4 @@
-print("Sainty is outdated 🔨📣")
-safePcall(function()
-    wait(0.2)
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Sainty",
-        Text = "8/4/2024 ⌚",
-        Duration = 3
-    })
-end)
 
-print("Sainty 08/4/2024 Thank you all")
 
 local function safePcall(func, ...)
     local success, result = pcall(func, ...)
@@ -19,7 +9,7 @@ local function safePcall(func, ...)
 end
 
 safePcall(function()
-   loadstring(game:HttpGet("https://pastebin.com/raw/WkGJkYRS"))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Client/Initiate.lua"))()
     
   -- Channels have been switched for now all src will be switched to repo next update patch *
 
@@ -269,7 +259,7 @@ end)
 
 wait(1) -- // To Prevent Crashing theres a sec pause
 
-loadstring(game:HttpGet("https://pastebin.com/raw/gnX2mVVd"))() 
+loadstring(game:HttpGet(""))() 
 
 
 -- Unseal and use bitcode below soon 
