@@ -8,7 +8,7 @@
 -- /////5////////////////4///////
 -- ////////////5/////////4///////
 -- ///4/////////////////////////
--- ///////5////////4/////4////////
+-- ///////5////////4/////4//////// [*PATCH V.0.3 SAINTY WAS CLOSED PATCH USE LATEST INSTALL SCRIPT TO FIX*]
 -- ////////////////////4//5//////
 -- ///////4/////////////////////
 -- ////////4////////////////////
@@ -291,7 +291,7 @@ function Environment.Functions:Exit()
         v:Disconnect()
     end
     if Environment.FOVCircle.Remove then Environment.FOVCircle:Remove() end
-    SendNotification("Sainty GUI Removed", "Sainty GUI was removed due to a rejoin.", 5) -- Notify the user
+    SendNotification("AimSync", "Disabled ⚠️", 5) -- Notify the user
     getgenv().Aimbot.Functions = nil
     getgenv().Aimbot = nil
 end
