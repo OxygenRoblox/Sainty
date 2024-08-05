@@ -25,6 +25,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/m
 
 Heres a gif snippet demonstrating Sainty in action:
 
-[![Video 1: Aimbot and Tracers](https://i.ibb.co/GxvSCfz/ezgif-6-e2c73084f2.gif)](https://i.ibb.co/GxvSCfz/ezgif-6-e2c73084f2.gif)
+[![Video 1: Aimbot and Tracers](https://i.ibb.co/bJvqWgC/Screen-Shot-2024-08-05-at-3-17-06-PM.png)]([)](https://i.ibb.co/bJvqWgC/Screen-Shot-2024-08-05-at-3-17-06-PM.png)
 
 
