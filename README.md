@@ -6,6 +6,7 @@
 
 -  Works better in First-Person 🕺
 -  Updates happen every other week 🛡
+-  Sainty utilizes code from public repositories and other open sources. ✍️  "Will change sooner then later"
 
 ## Features
 - **Aimbot:** Automatically locks onto targets to enhance accuracy.
