@@ -1,5 +1,5 @@
-## ⚠️ We are working on a update!
- Sainty [BETA]
+
+## Sainty [BETA]
 
 ## Description 🎯
 - Sainty is a powerful script designed to add many features to increase hitbox accuracy  🪩
