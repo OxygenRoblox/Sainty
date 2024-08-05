@@ -1,7 +1,15 @@
-print("Sainty is Updated 🔨📣")
+print("Sainty is outdated 🔨📣")
+safePcall(function()
+    wait(0.2)
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Sainty",
+        Text = "8/4/2024 ⌚",
+        Duration = 3
+    })
+end)
+
 print("Sainty 08/4/2024 Thank you all")
-wait(1)
--- Then Proceed with the rest of loading sainty -- [LOADING UPDATE PATCHED 0/8/4/2024 ⚠️]
+
 local function safePcall(func, ...)
     local success, result = pcall(func, ...)
     if not success then
@@ -11,7 +19,10 @@ local function safePcall(func, ...)
 end
 
 safePcall(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/OxygenRoblox/Sainty/main/Modules/Tamper.lua"))()
+   loadstring(game:HttpGet("https://pastebin.com/raw/WkGJkYRS"))()
+    
+  -- Channels have been switched for now all src will be switched to repo next update patch *
+
 end)
 
 local l = nil
@@ -253,3 +264,35 @@ safePcall(function()
     g:SetState(false)
     j:SetState(false)
 end)
+
+
+
+wait(1) -- // To Prevent Crashing theres a sec pause
+
+loadstring(game:HttpGet("https://pastebin.com/raw/gnX2mVVd"))() 
+
+
+-- Unseal and use bitcode below soon 
+-- ))()()()())((())()()())
+--23 32 3 3 32 23 23  32 32 2
+-- ))()()()())((())()()())
+-- 23 2 3 232 32 3 23 32 23 
+-- ))()()()())((())()()())
+-- 23 23 32 32 32  23 23 32 23 
+-- ))()()()())((())()()())
+-- 32 3 32 23 32 32 32 2 3
+-- ))()()()())((())()()())
+-- 23 32 2 3 23 32 2 32 23 23
+-- ))()()()())((())()()())
+--     3223 23 2 2 32 3 2 2 
+
+-- ))()()()())((())()()())
+23 23 23 23 3 2 32 23 32 23 
+-- ))()()()())((())()()())
+2 32  33 2 2 32 233 232 323 
+-- ))()()()())((())()()())
+23 23 23 23 2323 2 32 32 3 
+-- ))()()()())((())()()())
+-- 2 32 32 3 23 23 23 23 2 32 
+-- ))()()()())((())()()())
+
